@@ -10,7 +10,7 @@ const siteMetadata = {
   theme: 'system', // system, dark or light
   siteUrl: 'https://joeleeblog.vercel.app/',
   siteRepo: 'https://github.com/joelee90/mynextblog',
-  siteLogo: '/static/images/logo.png',
+  siteLogo: '/static/images/floppy-disk.png',
   image: '/static/images/profile.png',
   socialBanner: '/static/images/twitter-card.png',
   email: 'jonghyeoklee90@gmail.com',
