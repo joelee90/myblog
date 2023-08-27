@@ -1,0 +1,66 @@
+---
+title: 'Type vs Interface: 어떤 것을 사용해야 할까요?'
+date: '2023-08-22'
+tags: ['typescript', 'guide']
+draft: false
+summary: 'Type vs Interface: 어떤 것을 사용해야 할까요?'
+---
+
+source: https://www.totaltypescript.com/type-vs-interface-which-should-you-use
+
+## Quick Explanation
+
+- Interface의 extends를 사용해야 하는 경우가 아니라면 type을 사용하세요.
+- Interface는 Union, Mapped Types, Conditional Types를 표현 할 수 없습니다.
+
+```typescript
+Union
+let age: number | string
+
+Mapped Types
+기존에 정의되어 있는 타입을 새로운 타입으로 변환해 주는 문법을 의미합니다.
+
+Conditional Types
+삼항 연산자 조건문 같은 형태를 띄고 있고, 타입으로 조건문의 결과를 얻게 해준다.
+```
+
+- 서로가 상속을 받아야 하는 객체들을 다뤄야 한다면, Interface를 사용하세요.
+- extends는 타입스크립트 type checker를 `&` 보다 빠르게 실행 합니다.
+- 같은 scope 안에 있는 동일한 이름의 Interface는, 선언들을 merge 하고, 예상치 못한 버그를 발생합니다.
+- Type aliase는 때때로 나타나는 Record `<PropertyKey, unknown>`의 implicit index signature를 가지고 있습니다.
+
+## Full Explanation
+
+- 타입스크립트는 다른 객체에서 확장되는 객체를 정의하기 위한 first-class primitive 인 interface를 제공합니다.
+- Interface는 타입스크립트의 첫 버전부터 존재했고, 객체지향 프로그래밍에 의해 영감을 받아, 상속을 이용해 타입을 만들수 있도록 허용합니다.
+- type은 객체말고도, 그 어떤 종류의 타입을 표현 할 수 있습니다.
+
+  - type으로는 가능하지만, interface로는 불가능합니다.
+
+  ```typescript
+  type StringOrNumber = string | number
+  ```
+
+- 객체 타입을 선언할때, interface 와 type alias 중 어떤것을 선택 해야 할까요?
+
+- 객체 상속을 위해선 Interfaces를 사용하세요.
+
+  - 'extends' 를 사용하여 interface를 만들면, typescript는 이름과 internal registry를 통해 interface를 cache 할 수 있습니다.
+    이게 무슨 의미인가 하면, 미래 타입 체크가 더 빨라 질 수 있다는 말입니다.
+    `&` 을 사용한 intersection type, 이름을 통해 cache는 불가능하며, 거의 매번 compute 해야 합니다.
+    작은 최적화이지만, interface를 사용하게 되면, 더해집니다. 그래서 객체 타입을 정 할 때는 interface를 사용하기를 권장합니다.
+
+- Interface는 declaration을 merge 할 수 있다.
+
+  - 같은 scope 안에서 동일한 2개의 interfaces가 선언되면, 선언을 merge 합니다.
+  - 이것을 피하기 위해선 ESLint 'no-redeclare' rule를 사용합니다.
+
+- Index Signatures in Types vs Interfaces
+
+  - type alias는 암묵적 index signature를 가지고 있지만, interfaces는 아닙니다.
+  - type alias는 index signature를 가지고 있는 type에 지정 가능하지만, interface는 아닙니다.
+
+- TS 공식문서에는 개인 선호도에 따라서 선택할 것을 권장하지만, 둘의 차이가 적기 떄문에 문제가 없을 것으로 봅니다.
+- TS팀은 interface를 기본으로 사용하고, type은 필요한 경우에만 사용하라고 권장하지만,
+  declaration merging, implicit index signature와 같은 기능 때문에 저는 type을 사용하라고 추천합니다.
+  type alias 는 더 유연하고, 덜 놀랍기(예상 가능) 때문입니다.
