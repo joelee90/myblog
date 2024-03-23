@@ -1,0 +1,51 @@
+---
+title: '리액트 네이티브 챌린지'
+date: 2024-03-06
+tags: ['react-native', 'optimization']
+draft: false
+summary: '리액트 네이티브 챌린지 - 1'
+---
+
+### Week 1-1 내가 작성한 컴포넌트가 앱에서 보여지기까지 과정
+
+### JSX
+
+- 실제로 우리가 작성한 JavaScript 코드가 실행되는 영역과, UI를 그려주는 네이티브 영역은 분리되어 있다.
+- How? (RN 에서 )
+- React Native Bridge 매커니즘을 통해 JSX와 네이티브 실행 영역에서 서로 소통할 수 있도록 통로가 있다.
+- Brige 매커니즘: 분리된 영역에서 서로 메세지-큐 방식으로 소통할 수 있는 매커니즘
+- yoga: meta에서 flexbox를 보여주기 위해 만든 크로스 플랫폼 앤진
+- flexbox 레이아웃 엔진으로 다양한 프로그래밍 언어에서 사용할 수 있는 오픈소스 라이브러리
+- flexbox는 web 에서만 존재하고, 네이티브 모바일에서는 존재 하지 않음
+
+Q&A
+
+- State of React Native 2023
+- react-native-vision-camera (JSI)
+- react-native-mmkv
+- 최적화
+  - React > React Native > Native
+- React Navigation
+  - native-stack 으로 사용 추천
+- react-native-unistyles
+  - C++, JSI bindings
+- Tamagui
+
+Animation
+
+- react-native-reanimated
+- react-native-skia
+- lottie
+
+FPS 측정
+
+- flashlight 측정하고 debugging 실행
+
+Software mansion
+
+Monorepo
+
+- web & app 에서 공유 할 수 잇는 부분은 공유
+- RN 0.71 이전 symboliclink 지원 X
+- 외부 프로젝트에 접근을 해야 하지만, RN는 metro에서 지원하지 않았음.
+- RN 0.72 부터는 지원

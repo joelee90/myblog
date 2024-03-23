@@ -1,0 +1,88 @@
+---
+title: '리액트 네이티브 챌린지'
+date: 2024-03-12
+tags: ['react-native', 'optimization']
+draft: false
+summary: '리액트 네이티브 챌린지 - 2'
+---
+
+### Week 1-2 현재까지의 성능 최적화
+
+- Hermes
+- Bridge
+- JSI
+
+### 왜 성능을 고려애햐 할까요?
+
+- Mobile 환경은 PC에 비해 환경이 열악하고, 제한된 리소스, 저사양기기, 저성능과 같은 다양한 문제가 있다.
+
+### 모바일 어플리케이션 성능 지표
+
+- FPS: Frame Per Second, 1초에 화면이 몇번 깜빡이는지? Mobile은 최소 60Hz ~ 120Hz
+- TTI: Time To Interact, 사용자가 첫 화면이 떠서 어떤 행동을 할 수 있을때, 상호작용 가능할 때.
+- Memory: 메모리, 다른 앱들과 동시에 실행이 되고, 메모리 사용을 줄여야 한다.
+- CPU: 저사양 기기, 뜨거워 질 수 있음
+
+Startup Types
+
+- HOT, WARM, COLD
+
+TTI
+
+- Performance API (0.72 부터)
+
+### Hermes를 아직 안쓴다면?
+
+- Podfile, Gradle을 통해서 Hermes가 사용중인지 확인 필요
+- 번들 최적화
+- react-native-bundle-visualizer
+- rnx-kit(tree-shaking): 사용하지 않는 code 분석, bundling 과정에서 제거
+- Ram-bundle
+  - React Native 에서도 lazy 기능을 사용 할 수 있다.
+- react-native-bundle-splitter
+
+### FlatList
+
+- optimizing-flatlist-configuration
+
+### FlashList
+
+- https://shopify.github.io/flash-list/
+
+### 정량적으로 확인하기
+
+- react-native-flipper-performance-monitor
+- React DevTools
+- Flashlight
+
+### UI Thread
+
+Android
+
+- System Trace Profiler
+- Android SDK에 포함되어 있는데 python 스크립트
+
+```
+python systrace.py
+```
+
+iOS
+
+- xcode instrument
+
+  - profiling
+  - 녹화
+
+- software-mansion/react-freeze
+- react-native-fast-image
+- InteractionManager
+  - ex) Wrapper
+
+Q&A
+
+- new architecture
+- bridgeless model
+- fabric
+- native-stack(native 에서 UI 작동 할 수 있도록)
+- turbo module
+- swift, java, kotlin 읽고 이해하는 수준

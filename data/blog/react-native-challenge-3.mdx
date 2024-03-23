@@ -1,0 +1,42 @@
+---
+title: '리액트 네이티브 챌린지'
+date: 2024-03-13
+tags: ['react-native', 'optimization']
+draft: false
+summary: '리액트 네이티브 챌린지 - 3'
+---
+
+### Week 2-1 앞으로 다가올 성능 최적화
+
+- codegen, overhead, 직렬화, benchmark, RCT, Turbo Modules, AppDelegate, ios-m,h file, UI Manager
+
+- React Native Architecture
+
+- React Native Upgrade Helper
+
+- Turbo Modules
+
+  - react-native-compressor 구현체
+
+- Fabric
+
+- Concurrency
+
+- useTransition
+
+  - useTransition
+  - startTransition
+  - useDeferredValue
+
+- Suspense
+
+Q&A
+
+- RN 디자인 패턴, 시스템 패턴
+  - 선언적 개념
+  - 데이터 단방향으로 흘러야 한다
+  - 재사용 할 수 있는 기능, hook으로 포괄적으로 만들기
+  - RN 파일구조 - 팀마다 다름, monorepo
+  - bundle 크기 최적화 할 필요 없다 - RN hermes를 통해서 bytecode로 컴파일 된다.
+    - rnx-kit: microsoft better bundling, 사용하지 않는 코드 제거
+  - 중간에 끊길수 있는 작업들은 다시 시도 할 수 있는 retry 할 수 있는 코드 작성
